@@ -1,0 +1,79 @@
+MODEL:
+  DEVICE: "cuda"
+  DEVICE_IDS: "'0'"
+  NAME: 'unet'
+  N_CHANNEL: 3
+  N_CLASS: 12
+  LABEL_SMOOTH: False
+  DROPOUT: 0.5
+  UNET:
+    ENCODE_DIM: 64
+    BILINEAR: True
+
+
+INPUT:
+  SIZE_TRAIN: [224, 224]
+  SIZE_TEST: [224, 224]
+
+  PIXEL_MEAN: [0.5716390795822704,0.5191239166003989,0.4923358870147872]
+  PIXEL_STD: [0.24454287910934064,0.2379462921336855,0.22901043133634436]
+  NORMALIZATION: True
+  USE_MIX_UP: False
+  USE_AUGMIX: False
+
+DATASETS:
+  NAMES: ('Base')
+  CLASS_NAMES: ['裸田','滑坡','草地','水体','村庄', '公路','土路', '城镇', '梯田', '条田', '密林', '疏林']
+  DATA_PATH: '/storage/dataset/wc_dataset/'
+  IMG_SUFFIX: '.tif'
+  SEG_MAP_SUFFIX: '.tif'
+  IMAGE_FOLDER: 'imgs'
+  GT_FOLDER: 'gts'
+
+DATALOADER:
+  NUM_WORKERS: 6
+
+SOLVER:
+  OPTIMIZER_NAME: "Adam"
+  SYNCBN: False
+
+  BASE_LR: 3e-4
+  MIN_LR: 3e-6
+  BIAS_LR_FACTOR: 1
+  USE_WARMUP: True
+
+  MOMENTUM: 0.9
+
+  WEIGHT_DECAY: 5e-4
+  WEIGHT_DECAY_BIAS: 5e-4
+
+  GAMMA: 0.1
+  STEPS: [60, 90]
+
+  WARMUP_FACTOR: 0.01
+  WARMUP_EPOCH: 10
+  WARMUP_BEGAIN_LR: 3e-06
+  WARMUP_METHOD: "linear"
+
+  MAX_EPOCHS: 150
+  CHECKPOINT_PERIOD: 1
+  LOG_PERIOD: 20
+  EVAL_PERIOD: 1
+  START_SAVE_EPOCH: 120
+#  START_SAVE_EPOCH: 0
+
+  PER_BATCH: 32
+  TENSORBOARD:
+    USE: True
+    LOG_PERIOD: 20
+TEST:
+  WEIGHT: r'/usr/demo/hexin/new_dataset/unet_baseline_150/unet_epoch147.pth'
+
+OUTPUT_DIR: "/storage/rs_models/unet"
+
+#TEST:
+#  WEIGHT: r'/usr/demo/hexin/new_dataset/unet_test/unet_epoch2.pth'
+#
+#OUTPUT_DIR: "/usr/demo/hexin/new_dataset/unet_test"
+
+

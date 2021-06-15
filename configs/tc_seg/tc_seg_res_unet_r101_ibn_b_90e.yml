@@ -1,0 +1,152 @@
+MODEL:
+  DEVICE: "cuda"
+  DEVICE_IDS: "'0'"
+  NAME: 'res_unet'
+  N_CHANNEL: 4
+  N_CLASS: 10
+  LABEL_SMOOTH: False
+  DROPOUT: 0.0
+  # WEIGHT: '/cache/ECAResNet50D_P_9c67f710.pth'
+  # WEIGHT: '/cache/resnet50-19c8e357.pth'
+  # WEIGHT: '/cache/resnet18-5c106cde.pth'
+  # WEIGHT: '/cache/resnet34-333f7ec4.tar'
+  # WEIGHT: '/cache/epoch_59.pth'
+  # WEIGHT: '/cache/seresnet34-a4004e63.pth'
+  # WEIGHT: '/cache/res2next_dla60_4s-d327927b.pth'
+  # WEIGHT: '/cache/resnet50_gn_ws-15beedd8.pth'
+  # WEIGHT: '/cache/resnet34_ibn_b-04134c37.pth'
+  # WEIGHT: '/cache/resnet34_ibn_a-94bc1577.pth'
+  WEIGHT: '/cache/resnet101_ibn_b.pth'
+  # WEIGHT: '/cache/pre_eca_resnet34_k3357.pth.tar'
+  # WEIGHT: '/cache/deeplab_resnest50_ade-2225f09d.pth'
+  # WEIGHT: '/cache/resnet34d_ra2-f8dcfcaf.pth'
+  
+  BC: False
+  THRESHOLD: 0.5
+  LOSS_TYPE: 'ce_with_lovasz'
+  # CLASS_WEIGHT: [1.0, 3, 1.0, 1.0, 3, 1.0, 1.0]
+  CLASS_WEIGHT: [1.0, 1.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 5.0]
+  # WEIGHT: '/cache/resnest50-528c19ca.pth'
+  # UNET:
+  #   ENCODE_DIM: 32
+  #   BILINEAR: True
+  #   SCSE: False
+  #   DBLOCK: False
+  #   ATTENTION_BLOCK: False
+  #   RRCNN_BLOCK: False
+  #   RRCNN_BLOCK_T: 2
+  # EFFICIENT_UNET:
+  #   BACKBONE_NAME: 'efficientnet-b2'
+  #   CONCAT_INPUT: True
+  #   ATTENTION_BLOCK: False
+  # DEEPLAB_V3_PLUS:
+  #   BACKBONE_NAME: 'xception'
+  #   AUX:  True
+  #   DILATED: True
+  RES_UNET:
+    # BACKBONE_NAME: 'ecaresnet50d_pruned'
+    BACKBONE_NAME: 'resnet101_ibn_b'
+    SCSE: True
+    MISH: False
+    DB_BLOCK: False
+    SPP: False
+    HYPERCOLUMN: False
+    ATT_BLOCK: False
+    SPHEAD: False
+
+
+INPUT:
+  SIZE_TRAIN: [256, 256]
+  SIZE_TEST: [256, 256]
+
+
+  PIXEL_MEAN: [0.485, 0.456, 0.406, 0.406]
+  PIXEL_STD: [0.229, 0.224, 0.225, 0.406]
+  NORMALIZATION: True
+  USE_MIX_UP: False
+  USE_AUGMIX: False
+
+  USE_VFLIP: False
+  USE_HFLIP: True
+  USE_RANDOMROTATE90: False
+  USE_SHIFTSCALEROTATE: True
+  USE_HUESATURATIONVALUE: False
+  USE_RGBSHIFT: False
+  USE_RANDOMBRIGHTNESSCONTRAST: False
+  USE_BLUR: False
+  USE_GAUSSNOISE: False
+  USE_ELASTICTRANSFORM: False
+  USE_CUTOUT: False
+
+DATASETS:
+  NAMES: ('Base')
+  CLASS_NAMES: ['耕地', '林地', '草地', '道路', '城镇建设用地', '农村建设用地', '工业用地', '构筑物', '水域', '裸地']
+  DATA_PATH: '/cache/split_dataset/'
+  IMG_SUFFIX: '.tif'
+  SEG_MAP_SUFFIX: '.png'
+  REDUCE_ZERO_LABEL: True
+  TRAIN_IMAGE_FOLDER: 'train/imgs'
+  TRAIN_GT_FOLDER: 'train/gts'
+  VAL_IMAGE_FOLDER: 'val/imgs'
+  VAL_GT_FOLDER: 'val/gts'
+
+DATALOADER:
+  NUM_WORKERS: 8
+
+SOLVER:
+  OPTIMIZER_NAME: "SGD"
+  SYNCBN: False
+
+  MULTI_SCALE: []
+  BASE_LR: 5e-3
+  MIN_LR: 1e-5
+  BIAS_LR_FACTOR: 1
+  USE_WARMUP: False
+
+  MOMENTUM: 0.9
+
+  WEIGHT_DECAY: 5e-4
+  WEIGHT_DECAY_BIAS: 5e-4
+
+  LR_SCHEDULER: 'cosine_annealing'
+  GAMMA: 0.1
+  STEPS: [5, 10]
+
+  WARMUP_FACTOR: 0.01
+  WARMUP_EPOCH: 10
+  WARMUP_BEGAIN_LR: 5e-05
+  WARMUP_METHOD: "linear"
+
+  SWA: False
+  SWA_LR: 2e-3
+  SWA_START: 75
+
+  
+  MAX_EPOCHS: 90
+  CHECKPOINT_PERIOD: 1
+  LOG_PERIOD: 100
+  EVAL_PERIOD: 1
+  TRAIN_LOG: False
+  START_SAVE_EPOCH: 0
+  START_EVAL_EPOCH: 0
+#  START_SAVE_EPOCH: 0
+
+  PER_BATCH: 32
+  FP16: True
+  RESUME: False
+  RESUME_CHECKPOINT: r'/cache/epoch_60.pth'
+  TENSORBOARD:
+    USE: True
+    LOG_PERIOD: 20
+TEST:
+  WEIGHT: r'/usr/demo/hexin/new_dataset/unet_baseline_150/unet_epoch147.pth'
+  FLIP_AUG: False
+
+OUTPUT_DIR: "/cache/unet_baseline_60"
+
+#TEST:
+#  WEIGHT: r'/usr/demo/hexin/new_dataset/unet_test/unet_epoch2.pth'
+#
+#OUTPUT_DIR: "/usr/demo/hexin/new_dataset/unet_test"
+
+

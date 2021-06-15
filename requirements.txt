@@ -1,0 +1,14 @@
+torch==1.6
+torchvision==0.7.0
+visdom
+yacs
+numpy==1.17.4
+opencv-python==4.1.1.26
+# mmcv-full==1.0.5
+scikit_image==0.15.0
+tensorboardX
+albumentations==0.5.2
+prettytable
+include
+pydensecrf
+prefetch_generator
