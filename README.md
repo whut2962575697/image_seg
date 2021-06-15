@@ -2,7 +2,7 @@
 
 ## Introduction
 This project is an open source semantic segmentation toolbox based on PyTorch. It is based on the codes of our Tianchi competition in 2021 (https://tianchi.aliyun.com/competition/entrance/531860/introduction).   
-In the competition, our team won the third place (please see Tianchi_README.md).
+In the competition, our team won the third place (please see [Tianchi_README.md](Tianchi_README.md "Hao Luo")).
 
 
 ### Overview
