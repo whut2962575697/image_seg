@@ -13,21 +13,23 @@
  | 7 | 工业用地 | 7 | 
  | 8 | 构筑物 | 8 | 
  | 9 | 水域 | 9 | 
- | 10 | 裸地 | 10 | 
+ | 10 | 裸地 | 10 |    
+
+
 ![img.png](images/img.png)
 
 ### main problems
-- [x] Unbalanced categories   
+#### Unbalanced categories   
 ![img.png](images/img1.png)
   
-- [x] label noise  
+#### label noise  
 ![img.png](images/img2.png)
   
-- [x] same object with different spectrums  
+#### same object with different spectrums  
   
 ![img.png](images/img3.png)
 
-- [x] gap of train and test
+#### gap of train and test
 
 ![img.png](images/img4.png)
 
@@ -42,6 +44,6 @@ The structure of our network is as follows:
 - MixUp
 - SWA
 - LargeMarginSoftmax Loss
-- inb-net
-- logist postprocess
+- Ibn-net
+- Logist postprocess
 ![img.png](images/img7.png)
