@@ -1,4 +1,5 @@
-# Top3 solution of Tianchi competition in 2021 (https://tianchi.aliyun.com/competition/entrance/531860/introduction)
+# Top3 solution of Tianchi competition in 2021 
+https://tianchi.aliyun.com/competition/entrance/531860/introduction
 
 ## Data Analyse
 ### categories
@@ -33,13 +34,17 @@
 
 ![img.png](images/img4.png)
 
-### Model
+To solve the above problems, we have designed the following solutions:   
+   
+![img.png](images/img8.png)
+
+## Model
 In the competition, we choose Res-UNet as the baseline model.To improve the generalization ability of the model, we choose ibn-net as the backbone.
 The structure of our network is as follows:
 
 ![img.png](images/img5.png)
 ![img.png](images/img6.png)
-### Tricks and experiment
+## Tricks and experiment
 - Data augmentation(RandomRotate90/ShiftScaleRotate/RGBShift etc.)
 - MixUp
 - SWA
