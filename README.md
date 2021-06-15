@@ -1,4 +1,4 @@
-#A Strong Baseline for Image Semantic Segmentation
+# A Strong Baseline for Image Semantic Segmentation
 
 ## Introduction
 This project is an open source semantic segmentation toolbox based on PyTorch. It is based on the codes of our Tianchi competition in 2021 (https://tianchi.aliyun.com/competition/entrance/531860/introduction).   

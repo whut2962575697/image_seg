@@ -12,5 +12,3 @@
 import os
 
 os.system('python train.py --config_file configs/wc_hrnet_hr48_160e.yml')
-# os.system('python train.py --config_file configs/wc_seg_res_unet_r34_ibn_a_160e.yml')
-# os.system('python train.py --config_file configs/wc_seg_res_unet_r34_ibn_a_swa.yml')
