@@ -14,8 +14,13 @@
  | 8 | 构筑物 | 8 | 
  | 9 | 水域 | 9 | 
  | 10 | 裸地 | 10 |    
+<<<<<<< HEAD
 
 
+=======
+ 
+ 
+>>>>>>> 7ac9e244a4f3469f3b689a61115e4be1756bfa04
 ![img.png](images/img.png)
 
 ### main problems
@@ -44,6 +49,12 @@ The structure of our network is as follows:
 - MixUp
 - SWA
 - LargeMarginSoftmax Loss
+<<<<<<< HEAD
 - Ibn-net
 - Logist postprocess
 ![img.png](images/img7.png)
+=======
+- inb-net
+- logist postprocess
+![img.png](images/img7.png)
+>>>>>>> 7ac9e244a4f3469f3b689a61115e4be1756bfa04
